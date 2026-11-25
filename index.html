@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wayfarer — Trip Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Wayfarer home"><span class="brand-mark">W</span><span>wayfarer<span class="brand-dot">.</span></span></a>
+    <div class="topbar-right"><span class="status-dot"></span><span>Plan a little. Go a lot.</span></div>
+  </header>
+
+  <main id="app">
+    <section id="authView" class="auth-layout">
+      <div class="intro-panel">
+        <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div>
+        <h1>Good trips<br>start with a<br><em>good plan.</em></h1>
+        <p>Bring your travel ideas together. Choose a destination, set your pace, and turn the details into a day-by-day itinerary.</p>
+        <div class="intro-foot"><span>01</span><span class="intro-rule"></span><span>TRAVEL PLANNING, MADE SIMPLE</span></div>
+      </div>
+      <div class="auth-panel">
+        <div class="auth-card">
+          <div class="eyebrow dark">WELCOME TO WAYFARER</div>
+          <h2>Sign in to continue</h2>
+          <p class="muted">Choose how you want to access the planner.</p>
+          <div class="role-tabs" role="tablist">
+            <button class="role-tab active" data-role="traveller" type="button">Traveller</button>
+            <button class="role-tab" data-role="partner" type="button">Admin / Partner</button>
+          </div>
+          <form id="loginForm">
+            <label for="loginName">Your name</label>
+            <input id="loginName" type="text" placeholder="e.g. Alex Morgan" required>
+            <label for="loginEmail">Email address</label>
+            <input id="loginEmail" type="email" placeholder="you@example.com" required>
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="Enter any password" required>
+            <button class="primary-btn full" type="submit">Continue <span>→</span></button>
+          </form>
+          <p class="demo-note">Demo project: enter any details to explore. No real account is created.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="travellerView" class="dashboard hidden">
+      <aside class="sidebar">
+        <a class="brand side-brand" href="#"><span class="brand-mark">W</span><span>wayfarer<span class="brand-dot">.</span></span></a>
+        <div class="side-label">WORKSPACE</div>
+        <button class="side-link active" data-page="planner"><span>＋</span> Plan a trip</button>
+        <button class="side-link" data-page="saved"><span>▤</span> My itineraries</button>
+        <div class="sidebar-bottom"><div class="user-mini"><div class="avatar" id="travellerAvatar">A</div><div><strong id="travellerName">Traveller</strong><small>Traveller account</small></div></div><button class="text-btn" id="travellerLogout">Sign out ↗</button></div>
+      </aside>
+      <section class="main-content">
+        <div class="page-heading"><div><div class="eyebrow dark">TRAVELLER WORKSPACE</div><h2 id="travellerHeading">Plan your next escape.</h2><p class="muted">A few details are all it takes to get started.</p></div><div class="date-stamp" id="todayStamp"></div></div>
+        <div id="plannerPage">
+          <div class="section-heading"><span class="section-number">01</span><div><h3>Tell us about your trip</h3><p>Set the basics. You can adjust the plan later.</p></div></div>
+          <form id="tripForm" class="trip-form">
+            <div class="form-grid">
+              <div class="field wide"><label for="destination">Where would you like to go?</label><input id="destination" required placeholder="e.g. Jaipur, Rajasthan"></div>
+              <div class="field"><label for="startDate">Start date</label><input id="startDate" type="date" required></div>
+              <div class="field"><label for="endDate">End date</label><input id="endDate" type="date" required></div>
+              <div class="field"><label for="travellers">Number of travellers</label><select id="travellers"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select></div>
+              <div class="field"><label for="budget">Approx. budget per person</label><select id="budget"><option value="Budget">Under ₹10,000</option><option value="Comfort" selected>₹10,000 – ₹25,000</option><option value="Premium">₹25,000 – ₹50,000</option><option value="Luxury">Above ₹50,000</option></select></div>
+              <div class="field"><label for="travelStyle">Travel style</label><select id="travelStyle"><option>Sightseeing</option><option>Adventure</option><option>Relaxation</option><option>Food & culture</option><option>Nature</option><option>Mixed experience</option></select></div>
+              <div class="field"><label for="transport">Preferred transport</label><select id="transport"><option>Any</option><option>Flight</option><option>Train</option><option>Bus</option><option>Self drive</option></select></div>
+              <div class="field wide"><label for="interests">Anything else we should know? <span class="optional">OPTIONAL</span></label><textarea id="interests" rows="3" placeholder="Places you want to visit, food preferences, special requests..."></textarea></div>
+            </div>
+            <div class="form-footer"><span class="muted small">Your itinerary will be saved in this browser.</span><button class="primary-btn" type="submit">Create itinerary <span>→</span></button></div>
+          </form>
+          <div id="itineraryResult" class="itinerary-result hidden"></div>
+        </div>
+        <div id="savedPage" class="hidden">
+          <div class="section-heading"><span class="section-number">02</span><div><h3>Your saved itineraries</h3><p>Trips you have created on this device.</p></div></div>
+          <div id="savedList" class="saved-list"></div>
+        </div>
+      </section>
+    </section>
+
+    <section id="partnerView" class="dashboard hidden">
+      <aside class="sidebar">
+        <a class="brand side-brand" href="#"><span class="brand-mark">W</span><span>wayfarer<span class="brand-dot">.</span></span></a>
+        <div class="side-label">MANAGEMENT</div>
+        <button class="side-link active"><span>▦</span> Overview</button>
+        <button class="side-link" id="partnerTripsLink"><span>▤</span> Trip requests</button>
+        <div class="sidebar-bottom"><div class="user-mini"><div class="avatar partner-avatar">P</div><div><strong id="partnerName">Partner</strong><small>Admin / Partner</small></div></div><button class="text-btn" id="partnerLogout">Sign out ↗</button></div>
+      </aside>
+      <section class="main-content">
+        <div class="page-heading"><div><div class="eyebrow dark">ADMIN / PARTNER WORKSPACE</div><h2>Good to have you here.</h2><p class="muted">A simple overview of traveller activity on this demo.</p></div><div class="date-stamp" id="partnerStamp"></div></div>
+        <div class="stats-grid">
+          <div class="stat-card"><span class="stat-label">TOTAL ITINERARIES</span><strong id="totalTrips">0</strong><small>Created on this browser</small></div>
+          <div class="stat-card"><span class="stat-label">DESTINATIONS</span><strong id="totalPlaces">0</strong><small>Unique places planned</small></div>
+          <div class="stat-card"><span class="stat-label">TRAVELLERS</span><strong id="totalPeople">0</strong><small>Across saved trip plans</small></div>
+        </div>
+        <div class="section-heading partner-section"><span class="section-number">01</span><div><h3>Recent trip plans</h3><p>View trip details submitted by travellers.</p></div></div>
+        <div id="partnerTripList" class="partner-trip-list"></div>
+        <div class="admin-note"><strong>Project note</strong><p>This is a front-end demonstration. In a real deployment, admin permissions, passwords and trip data must be handled by a secure backend and database.</p></div>
+      </section>
+    </section>
+  </main>
+  <footer class="footer"><span>© 2026 WAYFARER TRIP PLANNER</span><span>MADE FOR THE JOURNEY</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
