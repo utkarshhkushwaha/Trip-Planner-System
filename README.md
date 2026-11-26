@@ -1,6 +1,17 @@
+
 # Wayfarer — Trip Planner System
 
 A simple front-end mini project built with **HTML, CSS and vanilla JavaScript**.
+
+## Team Members
+
+| S. No. | Team Member Name | GitHub ID |
+|---|---|---|
+| 1 | Umme Eiman | uesaifee-cyber |
+| 2 | Unnati Agrawal | Unnati-core |
+| 3 | Urvi Gupta | UrviCoder16 |
+| 4 | Utkarsh Gupta | utkarsh21gupta08-cmd |
+| 5 | Utkarsh Kushwaha | utkarshhkushwaha |
 
 ## Run the project
 1. Extract `trip-planner-system.zip`.
